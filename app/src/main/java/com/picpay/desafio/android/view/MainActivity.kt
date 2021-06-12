@@ -41,4 +41,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         mUserService.searchData(this, progressBar)
 
     }
+
+    fun checkLastData() {
+        //TODO CHECK LAST SAVED DATA
+    }
 }
