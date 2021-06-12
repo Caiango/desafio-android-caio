@@ -55,7 +55,8 @@ class UserService {
                     } else {
                         context.getString(R.string.error)
                     }
-
+                    mPrefs = PrefsConfig(context)
+                    receivedList.postValue(mPrefs.getFromPrefs())
                     progressBar.visibility = View.GONE
                     Toast.makeText(context, message, Toast.LENGTH_SHORT)
                         .show()
@@ -67,10 +68,16 @@ class UserService {
                 ) {
                     mPrefs = PrefsConfig(context)
                     progressBar.visibility = View.GONE
-                    receivedList.postValue(response.body() as ArrayList<User>?)
-                    mPrefs.saveIntoPrefs(response.body() as ArrayList<User>)
 
-                    Log.i("PREFS", mPrefs.getFromPrefs().toString())
+                    if (response.body() != null) {
+                        receivedList.postValue(response.body() as ArrayList<User>?)
+                        mPrefs.saveIntoPrefs(response.body() as ArrayList<User>)
+                    } else Toast.makeText(
+                        context,
+                        context.getString(R.string.no_results),
+                        Toast.LENGTH_LONG
+                    ).show()
+
                 }
             })
     }

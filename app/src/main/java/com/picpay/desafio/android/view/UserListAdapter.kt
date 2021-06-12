@@ -33,4 +33,5 @@ class UserListAdapter : RecyclerView.Adapter<UserListItemViewHolder>() {
     }
 
     override fun getItemCount(): Int = users.size
+
 }

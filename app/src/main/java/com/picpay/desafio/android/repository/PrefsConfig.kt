@@ -19,14 +19,17 @@ class PrefsConfig(context: Context) {
 
         val jsonString = gson.toJson(list)
 
-        editor.putString("LIST", jsonString)
+        editor.putString(Constants.LIST, jsonString)
         editor.apply()
     }
 
     fun getFromPrefs(): ArrayList<User> {
         val jsonString = sharedPref.getString(Constants.LIST, "")
-
-        val type: Type = object : TypeToken<ArrayList<User>>() {}.type
-        return gson.fromJson(jsonString, type)
+        var list = ArrayList<User>()
+        if (jsonString != "") {
+            val type: Type = object : TypeToken<ArrayList<User>>() {}.type
+            list = gson.fromJson<ArrayList<User>>(jsonString, type)
+        }
+        return list
     }
 }

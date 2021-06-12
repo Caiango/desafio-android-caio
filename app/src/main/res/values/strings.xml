@@ -3,5 +3,7 @@
     <string name="title">Contatos</string>
     <string name="error">Ocorreu um erro. Tente novamente.</string>
     <string name="Interneterror">Sem conexão com a internet.</string>
+    <string name="no_results">Sem Resultados</string>
+    <string name="contacts_found">contatos</string>
 
 </resources>

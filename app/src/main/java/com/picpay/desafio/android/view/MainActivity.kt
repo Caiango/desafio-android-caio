@@ -2,6 +2,8 @@ package com.picpay.desafio.android.view
 
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +21,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private lateinit var userList: ArrayList<User>
     private lateinit var mUserService: UserService
     private lateinit var mainViewModel: UserViewModel
+    private lateinit var contactsNumber: TextView
 
     override fun onResume() {
         super.onResume()
@@ -26,6 +29,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         mUserService = UserService()
         recyclerView = findViewById(R.id.recyclerView)
         progressBar = findViewById(R.id.user_list_progress_bar)
+        contactsNumber = findViewById(R.id.contacts_found)
 
         adapter = UserListAdapter()
         recyclerView.adapter = adapter
@@ -35,14 +39,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         mainViewModel.userList.observe(this, Observer {
             userList = it
             adapter.users = userList
+            contactsNumber.text =
+                "${adapter.itemCount} " + getString(R.string.contacts_found)
 
         })
 
         mUserService.searchData(this, progressBar)
 
-    }
-
-    fun checkLastData() {
-        //TODO CHECK LAST SAVED DATA
     }
 }
