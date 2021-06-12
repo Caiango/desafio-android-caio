@@ -2,6 +2,7 @@ package com.picpay.desafio.android
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
+import com.picpay.desafio.android.repository.PrefsConfig
 import com.picpay.desafio.android.retrofit.PicPayService
 import com.picpay.desafio.android.retrofit.User
 import junit.framework.Assert.assertEquals
@@ -13,6 +14,7 @@ class ExampleServiceTest {
 
     private val api = mock<PicPayService>()
 
+
     private val service = ExampleService(api)
 
     @Test
@@ -21,7 +23,7 @@ class ExampleServiceTest {
         val call = mock<Call<List<User>>>()
         val expectedUsers = emptyList<User>()
 
-        whenever(call.execute()).thenReturn(Response.success(expectedUsers))
+        whenever(call.execute()).thenReturn(Response.success(null))
         whenever(api.getUsers()).thenReturn(call)
 
         // when
@@ -30,4 +32,5 @@ class ExampleServiceTest {
         // then
         assertEquals(users, expectedUsers)
     }
+
 }

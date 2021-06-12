@@ -1,5 +1,6 @@
 package com.picpay.desafio.android
 
+import com.picpay.desafio.android.repository.PrefsConfig
 import com.picpay.desafio.android.retrofit.PicPayService
 import com.picpay.desafio.android.retrofit.User
 

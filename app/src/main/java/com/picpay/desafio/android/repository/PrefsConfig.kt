@@ -2,6 +2,7 @@ package com.picpay.desafio.android.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.picpay.desafio.android.retrofit.User
@@ -12,12 +13,12 @@ class PrefsConfig(context: Context) {
     val mContext = context
     val sharedPref: SharedPreferences =
         mContext.getSharedPreferences(Constants.PREFERENCES_NAME, Context.MODE_PRIVATE)
-    val editor: SharedPreferences.Editor = sharedPref.edit()
     var gson = Gson()
 
     fun saveIntoPrefs(list: ArrayList<User>) {
-
+        val editor: SharedPreferences.Editor = sharedPref.edit()
         val jsonString = gson.toJson(list)
+        Log.i("JSON", jsonString)
 
         editor.putString(Constants.LIST, jsonString)
         editor.apply()

@@ -2,15 +2,14 @@ package com.picpay.desafio.android.retrofit
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.picpay.desafio.android.repository.PrefsConfig
 import com.picpay.desafio.android.R
+import com.picpay.desafio.android.repository.PrefsConfig
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -70,13 +69,15 @@ class UserService {
                     progressBar.visibility = View.GONE
 
                     if (response.body() != null) {
-                        receivedList.postValue(response.body() as ArrayList<User>?)
+                        receivedList.postValue(response.body() as ArrayList<User>)
                         mPrefs.saveIntoPrefs(response.body() as ArrayList<User>)
-                    } else Toast.makeText(
-                        context,
-                        context.getString(R.string.no_results),
-                        Toast.LENGTH_LONG
-                    ).show()
+                    } else {
+                        Toast.makeText(
+                            context,
+                            context.getString(R.string.no_results),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
 
                 }
             })
