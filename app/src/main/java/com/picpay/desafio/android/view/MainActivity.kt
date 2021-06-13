@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
     private lateinit var adapter: UserListAdapter
-    private lateinit var userList: ArrayList<User>
     private lateinit var mUserService: UserService
     private lateinit var mainViewModel: UserViewModel
     private lateinit var contactsNumber: TextView
@@ -37,8 +36,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         progressBar.visibility = View.VISIBLE
 
         mainViewModel.userList.observe(this, Observer {
-            userList = it
-            adapter.users = userList
+            adapter.users = it
             contactsNumber.text =
                 "${adapter.itemCount} " + getString(R.string.contacts_found)
 

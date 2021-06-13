@@ -32,7 +32,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:textColor="@color/colorPrimaryLight"
-            android:text="0 contatos" />
+            android:text="@string/no_contacts" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
