@@ -77,6 +77,8 @@ class UserService {
                             context.getString(R.string.no_results),
                             Toast.LENGTH_LONG
                         ).show()
+                        receivedList.postValue(ArrayList())
+                        mPrefs.saveIntoPrefs(ArrayList())
                     }
 
                 }

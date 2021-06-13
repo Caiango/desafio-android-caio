@@ -18,7 +18,6 @@ class PrefsConfig(context: Context) {
     fun saveIntoPrefs(list: ArrayList<User>) {
         val editor: SharedPreferences.Editor = sharedPref.edit()
         val jsonString = gson.toJson(list)
-        Log.i("JSON", jsonString)
 
         editor.putString(Constants.LIST, jsonString)
         editor.apply()
