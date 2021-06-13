@@ -13,8 +13,6 @@ import retrofit2.Response
 class ExampleServiceTest {
 
     private val api = mock<PicPayService>()
-
-
     private val service = ExampleService(api)
 
     @Test
@@ -23,10 +21,11 @@ class ExampleServiceTest {
         val call = mock<Call<List<User>>>()
         val expectedUsers = emptyList<User>()
 
+        // when
+
         whenever(call.execute()).thenReturn(Response.success(null))
         whenever(api.getUsers()).thenReturn(call)
 
-        // when
         val users = service.example()
 
         // then

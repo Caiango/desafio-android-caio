@@ -20,12 +20,10 @@ class PrefsConfigTest {
         // given
         val expectedUsers = ArrayList<User>()
 
-        whenever(sharedPrefs.getString(Constants.LIST, "")).thenReturn("")
-        whenever(context.getSharedPreferences(Constants.PREFERENCES_NAME, Context.MODE_PRIVATE)).thenReturn(sharedPrefs)
-
-        val mPrefs = PrefsConfig(context)
-
         // when
+        whenever(context.getSharedPreferences(Constants.PREFERENCES_NAME, Context.MODE_PRIVATE)).thenReturn(sharedPrefs)
+        whenever(sharedPrefs.getString(Constants.LIST, "")).thenReturn("")
+        val mPrefs = PrefsConfig(context)
         val users = mPrefs.getFromPrefs()
 
         // then
@@ -37,17 +35,15 @@ class PrefsConfigTest {
 
         // given
         val expectedUsers = listOf(User("img", "test", 1, "test"))
-
-        val json = "[{\"id\":1,\"img\":\"img\",\"name\":\"test\",\"username\":\"test\"}]"
-        whenever(sharedPrefs.getString(Constants.LIST, "")).thenReturn(json)
-        whenever(context.getSharedPreferences(Constants.PREFERENCES_NAME, Context.MODE_PRIVATE)).thenReturn(sharedPrefs)
-
-        val mPrefs = PrefsConfig(context)
+        val stringJsonArrayList = "[{\"id\":1,\"img\":\"img\",\"name\":\"test\",\"username\":\"test\"}]"
 
         // when
+        whenever(sharedPrefs.getString(Constants.LIST, "")).thenReturn(stringJsonArrayList)
+        whenever(context.getSharedPreferences(Constants.PREFERENCES_NAME, Context.MODE_PRIVATE)).thenReturn(sharedPrefs)
+        val mPrefs = PrefsConfig(context)
         val users = mPrefs.getFromPrefs()
 
         // then
-        assertEquals(expectedUsers, users)
+        assertEquals(users, expectedUsers)
     }
 }
